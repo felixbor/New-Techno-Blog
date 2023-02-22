@@ -1,7 +1,7 @@
 const newFormHandler = async (event) => {
     event.preventDefault();
   
-    // gabbing html 
+    // taking  html   content
     const comment = document.querySelector('#blog-desc').value;
     const post_id = document.querySelector('#blog_id').textContent;
   

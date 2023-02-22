@@ -37,7 +37,7 @@ router.post('/', withAuth, async (req, res) => {
   });
 
 
-  //update existing comment
+  //update  comment
 router.put('/:id', withAuth, async (req, res) => {
   try {
       const updateComment = await Comment.update(
