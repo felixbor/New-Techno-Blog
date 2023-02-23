@@ -7,7 +7,7 @@ const newFormHandler = async (event) => {
   
     // create and post new blog from dashboard page
     if (title && content) {
-      const response = await fetch(`/api/blogs`, {
+      const response = await fetch(`/api/posts`, {
         method: 'POST',
         body: JSON.stringify({ title, content }),
         headers: {
@@ -28,7 +28,7 @@ const newFormHandler = async (event) => {
     if (event.target.hasAttribute('data-id')) {
       const id = event.target.getAttribute('data-id');
   
-      const response = await fetch(`/api/blogs/${id}`, {
+      const response = await fetch(`/api/posts/${id}`, {
         method: 'DELETE',
       });
   
