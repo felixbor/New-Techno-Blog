@@ -60,7 +60,7 @@ router.delete('/:id', withAuth, async (req, res) => {
       return;
     }
 
-    res.status(200).json(blogData);
+    res.status(200).json(postData);
   } catch (err) {
     console.log(' ERROR', err);
     res.status(500).json(err);

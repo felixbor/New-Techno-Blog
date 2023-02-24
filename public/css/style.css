@@ -47,8 +47,6 @@ padding: 20px 20px 20px 20px;
 #blog_id {
   display: none;
 }
-
-
 .btn {
   text-align: center;
   display: inline-block;
@@ -90,6 +88,9 @@ form .form-input {
   border: none;
   font-size: 2em;
   background-color: rgb(196, 235, 255);
+ }
+ #logout:hover{
+  text-decoration: underline;
  }
 
 

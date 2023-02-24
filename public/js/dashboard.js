@@ -23,7 +23,7 @@ const newFormHandler = async (event) => {
     }
   };
   
-  // delete created blog posts from dashboard page
+  // delete created  posts from dashboard page
   const delButtonHandler = async (event) => {
     if (event.target.hasAttribute('data-id')) {
       const id = event.target.getAttribute('data-id');

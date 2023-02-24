@@ -1,40 +1,43 @@
 const router = require('express').Router();
-const { Post } = require('../models');
+const { Post, Comment,User} = require('../models');
 const withAuth = require('../utils/auth');
 
 
 
 // get all post
-router.get('/', async (req, res) => { 
+router.get('/', withAuth,async (req, res) => { 
+  console.log("dashboardruote")
   try {
       const postData = await Post.findAll(
-        Post.findAll({
+        {
           where: {
             user_id: req.session.user_id,
           },
-          attributes: ['id', 'title', 'created_at', 'post_content'],
+          attributes: ['id', 'title', 'created_at', 'content'],
           include: [
             {
               model: Comment,
-              attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+              attributes: ['id', 'comment', 'post_id', 'user_id', 'created_at'],
               include: {
                 model: User,
-                attributes: ['username'],
+                attributes: ['userName'],
               },
             },
             {
               model: User,
-              attributes: ['username'],
+              attributes: ['userName'],
             },
           ],
-        })
+        }
       );
       const posts = postData.map(post => post.toJSON());
        // render to 
-       res.send(posts)
+       //res.send(posts)
+       console.log(posts)
       res.status(200).render('dashboard', { posts,logged_in: true });
      
        } catch (err) {
+        console.log(err)
        res.status(500).json(err);       }
 });
 
@@ -42,7 +45,7 @@ router.get('/', async (req, res) => {
 router.get('/editPost/:id', withAuth, async (req, res) => {
   
   try {
-      const updatePost = await Blog.findByPk(req.params.id);
+      const updatePost = await Post.findByPk(req.params.id);
       console.log(updatePost);
 
       if (updatePost) {
@@ -50,11 +53,11 @@ router.get('/editPost/:id', withAuth, async (req, res) => {
         const post = updatePost.get({ plain: true });
 
         res.render('editPost', {
-          ...post,
+          post,
           logged_in: true
         });
       }
-      res.status(200).json(updatePost);
+      //res.status(200).json(updatePost);
   } catch (e) {
       console.log(e);
       res.status(500).json(e);
