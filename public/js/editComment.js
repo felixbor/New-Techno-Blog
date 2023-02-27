@@ -7,9 +7,9 @@ async function editFormHandler(event) {
   // Get the comment text from the form
   
   const comment = document.querySelector("#comment").value;
-
+  const id = event.target.getAttribute('data-id')
   // use the update route to update the post
-  const response = await fetch(`/api/posts/${id}`, {
+  const response = await fetch(`/api/comments/${id}`, {
       method: 'PUT',
       body: JSON.stringify({
         comment
@@ -27,12 +27,14 @@ async function editFormHandler(event) {
 };
 
 
-// delete created blog posts from dashboard page
+// delete comment  from dashboard page
 const delButtonHandler = async (event) => {
+  console.log("delete button")
+  event.preventDefault()
   if (event.target.hasAttribute('data-id')) {
     const id = event.target.getAttribute('data-id');
 
-    const response = await fetch(`/api/posts/${id}`, {
+    const response = await fetch(`/api/comments/${id}`, {
       method: 'DELETE',
     });
 
@@ -44,8 +46,8 @@ const delButtonHandler = async (event) => {
   }
 };
 
-document.querySelector('.edit-comment-form')
-  .addEventListener('submit', editFormHandler);
+document.querySelector('#update')
+  .addEventListener('click', editFormHandler);
 
   document
   .querySelector('#delete-comment')

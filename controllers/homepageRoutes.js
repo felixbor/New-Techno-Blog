@@ -35,7 +35,13 @@ router.get('/posts/:id', async (req, res) => {
         },
         {
           model: Comment,
-          attributes:['comment', 'created_at']
+          include:[
+            {
+              model: User,
+          attributes: ['userName'],
+            }
+          ],
+          attributes:['comment', 'created_at', "id"]
         }
       ],
     });
@@ -56,12 +62,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
  console.log('homeroutes')
   try {
     // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.user_id, {
-      attributes: { exclude: ['password'] },
-      include: [{ model: Post }],
-    });
-
-    const user = userData.get({ plain: true });
+    
 
     res.render('dashboard', {
       ...user,

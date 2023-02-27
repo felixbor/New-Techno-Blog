@@ -4,10 +4,10 @@
   </div>
 </div>
 
-    <form class="form edit-blog-form">
+    <form class="form edit-blog-form" id="edit-blog-form">
       <div class="form-group">
         <label for="blog-name">Title:</label>
-        <input class="form-input" type="text" id="blog-name" name="blog-name" value="{{post.title}}"/>
+        <input class="form-input" type="text" id="blog-name" name="blog-name" data-id="{{post.id}}" value="{{post.title}}"/>
       </div>
       <p>Blog post by: {{user.userName}} on {{format_date post.createdAt}}</p>
       <div class="form-group">
@@ -20,4 +20,4 @@
     </form>
   </div>
 
-  <script src="./js/editPost.js"></script>
+  <script src="/js/editPost.js"></script>
