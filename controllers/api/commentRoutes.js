@@ -2,7 +2,6 @@ const router = require('express').Router();
 const { Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-//  /api/comments
 
 // get all comments
 router.get('/', async (req, res) => { 
@@ -65,12 +64,12 @@ router.put('/:id', withAuth, async (req, res) => {
 
 
   // delete comment
-router.delete('/:id',  async (req, res) => {
+router.delete('/:id', withAuth, async (req, res) => {
   try {
       const commentData = await Comment.destroy({
           where: {
               id: req.params.id,
-             // user_id: req.session.user_id,
+              user_id: req.session.user_id,
           },
       });
       if (!commentData) {

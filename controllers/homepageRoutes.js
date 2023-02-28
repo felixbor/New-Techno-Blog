@@ -58,20 +58,20 @@ router.get('/posts/:id', async (req, res) => {
 });
 
 // Use withAuth middleware to prevent access to route
-router.get('/dashboard', withAuth, async (req, res) => {
- console.log('homeroutes')
-  try {
-    // Find the logged in user based on the session ID
+// router.get('/dashboard', withAuth, async (req, res) => {
+//  console.log('homeroutes')
+//   try {
+//     // Find the logged in user based on the session ID
     
 
-    res.render('dashboard', {
-      ...user,
-      logged_in: true
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
+//     res.render('dashboard', {
+//       ...user,
+//       logged_in: true
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 router.get('/login', (req, res) => {
   // If the user is  logged in, redirect the request to another route

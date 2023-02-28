@@ -8,7 +8,7 @@ async function editFormHandler(event) {
   
   const comment = document.querySelector("#comment").value;
   const id = event.target.getAttribute('data-id')
-  // use the update route to update the post
+  // use the update route to update the comment
   const response = await fetch(`/api/comments/${id}`, {
       method: 'PUT',
       body: JSON.stringify({
@@ -41,7 +41,7 @@ const delButtonHandler = async (event) => {
     if (response.ok) {
       document.location.replace('/dashboard');
     } else {
-      alert('Failed to delete blog');
+      alert('Failed to delete comment');
     }
   }
 };
